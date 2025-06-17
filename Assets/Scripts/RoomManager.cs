@@ -7,7 +7,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
 
     // Public
-
+    public GameObject player;
+    [Space]
+    public Transform spawnPoint;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,9 +34,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
 
+        Debug.Log("We're in Lobby.");
+
         PhotonNetwork.JoinOrCreateRoom("test", null, null);
+    }
 
-        Debug.Log("We're connected and in a room now.");
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
 
+        Debug.Log("We're Connected and in a room!");
+
+        GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
     }
 }
