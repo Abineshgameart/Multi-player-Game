@@ -12,9 +12,11 @@ public class Movement : MonoBehaviour
     
 
 
-    private float walkSpeed = 100f;
+    private float walkSpeed = 200f;
     private Vector2 moveDirection;
     private Rigidbody rb;
+
+
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,7 +34,7 @@ public class Movement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        rb.linearVelocity = new Vector3(moveDirection.x * walkSpeed * Time.deltaTime, 0, moveDirection.y * walkSpeed * Time.deltaTime);
+        rb.linearVelocity = new Vector3(moveDirection.x * walkSpeed * Time.deltaTime, rb.linearVelocity.y, moveDirection.y * walkSpeed * Time.deltaTime);
         // rb.AddForce(new Vector3(moveDirection.x * walkSpeed * Time.deltaTime, 0, moveDirection.y * walkSpeed * Time.deltaTime), ForceMode.VelocityChange);
     }
 }
