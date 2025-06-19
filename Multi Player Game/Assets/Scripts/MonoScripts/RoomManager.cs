@@ -1,6 +1,7 @@
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -12,7 +13,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject lobbyBtn;
     public GameObject player;
     [Space]
-    public Transform spawnPoint;
+    // public Transform spawnPoint;
     public TMP_InputField createRoomTxt;
     public TMP_InputField joinRoomTxt;
 
@@ -69,7 +70,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         Debug.Log("We're Connected and in a room!");
 
-        GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
+        SceneManager.LoadScene("Area1");
+        
+        // GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
     }
 
     public void LobbyScreen()
