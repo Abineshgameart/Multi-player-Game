@@ -9,10 +9,8 @@ public class Movement : MonoBehaviour
     // Public
     // public PlayerInput playerInput;
     public InputActionReference move;
-    
+    public float walkSpeed = 2f;
 
-
-    private float walkSpeed = 200f;
     private Vector2 moveDirection;
     private Rigidbody rb;
 
@@ -34,7 +32,7 @@ public class Movement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        rb.linearVelocity = new Vector3(moveDirection.x * walkSpeed * Time.deltaTime, rb.linearVelocity.y, moveDirection.y * walkSpeed * Time.deltaTime);
+        rb.linearVelocity = new Vector3(moveDirection.x * walkSpeed * 100 * Time.deltaTime, rb.linearVelocity.y, moveDirection.y * walkSpeed * 100 * Time.deltaTime);
         // rb.AddForce(new Vector3(moveDirection.x * walkSpeed * Time.deltaTime, 0, moveDirection.y * walkSpeed * Time.deltaTime), ForceMode.VelocityChange);
     }
 }
