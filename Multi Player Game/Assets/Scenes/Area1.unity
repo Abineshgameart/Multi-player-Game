@@ -546,7 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   characterController: {fileID: 387062037}
-  walkSpeed: 2
+  walkSpeed: 5
   turnSmoothTime: 0.15
 --- !u!136 &387062036
 CapsuleCollider:
@@ -1067,8 +1067,8 @@ Camera:
   near clip plane: 0.01
   far clip plane: 10000
   field of view: 60
-  orthographic: 0
-  orthographic size: 11.2
+  orthographic: 1
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1092,8 +1092,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758574968}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.29006013, y: -4.0092336e-17, z: 5.2258846e-17, w: 0.9570084}
-  m_LocalPosition: {x: -0.7661955, y: 12.0706, z: -16.93968}
+  m_LocalRotation: {x: 0.3230917, y: 0, z: 0, w: 0.9463677}
+  m_LocalPosition: {x: -0.7661955, y: 12.634935, z: -15.401619}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3234,6 +3234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2127990196}
   - component: {fileID: 2127990195}
+  - component: {fileID: 2127990198}
   - component: {fileID: 2127990197}
   m_Layer: 0
   m_Name: CinemachineCamera
@@ -3267,11 +3268,11 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 11.2
+    OrthographicSize: 8
     NearClipPlane: 0.01
     FarClipPlane: 10000
     Dutch: 0
-    ModeOverride: 2
+    ModeOverride: 1
     PhysicalProperties:
       GateFit: 2
       SensorSize: {x: 21.946, y: 16.002}
@@ -3293,8 +3294,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127990192}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.29006013, y: -4.0092336e-17, z: 5.2258846e-17, w: 0.9570084}
-  m_LocalPosition: {x: -0.7661955, y: 12.0706, z: -16.93968}
+  m_LocalRotation: {x: 0.3230917, y: 0, z: 0, w: 0.9463677}
+  m_LocalPosition: {x: -0.7661955, y: 12.634935, z: -15.401619}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3309,31 +3310,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 2127990192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90eebaab98e4b44b0ba8c79821e554e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 62d54399b04b4fa48a73e121d4937dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SplineSettings:
-    Spline: {fileID: 0}
-    Position: 0
-    Units: 1
-  SplineOffset: {x: 0, y: 0, z: 0}
-  CameraRotation: 0
-  Damping:
+  ReferenceFrame: 1
+  RecenterTarget: 0
+  PanAxis:
+    Value: 0
+    Center: 0.05
+    Range: {x: -180, y: 180}
+    Wrap: 1
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  TiltAxis:
+    Value: 37.7
+    Center: 0
+    Range: {x: -70, y: 70}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+--- !u!114 &2127990198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127990192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraDistance: 19.08
+  DeadZoneDepth: 0
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 1
+      Size: {x: 0.6, y: 0.5}
+    HardLimits:
+      Enabled: 1
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 0, z: 0}
+  Damping: {x: 1, y: 1, z: 1}
+  Lookahead:
     Enabled: 0
-    Position: {x: 0, y: 0, z: 0}
-    Angular: 0
-  AutomaticDolly:
-    Enabled: 0
-    Method:
-      rid: -2
-  m_LegacyPosition: -1
-  m_LegacyUnits: 0
-  m_LegacySpline: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
 --- !u!1 &167304545352287632
 GameObject:
   m_ObjectHideFlags: 0
