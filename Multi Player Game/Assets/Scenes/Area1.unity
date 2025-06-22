@@ -902,6 +902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   characterController: {fileID: 387062037}
+  dragController: {fileID: 387062040}
   walkSpeed: 5
   turnSmoothTime: 0.15
 --- !u!136 &387062036
@@ -1081,14 +1082,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 387062031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f345a26595ceeb4190ca437dac1fca1, type: 3}
+  m_Script: {fileID: 11500000, guid: 885c887b9e52e4c48852424ca9de6b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireBtn: {fileID: 1303308451}
+  look: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  rightStick: {fileID: 240992952}
+  isDragging: 0
+  forceToAdd: 10
+  turnSmoothTime: 0.1
   _projection: {fileID: 387062038}
   _ballPrefab: {fileID: 89762729440903058, guid: dd7eb847e6b7f2d49b33f543c8971776, type: 3}
   _ballSpawn: {fileID: 1383103523}
-  force: 20
 --- !u!1 &390608427
 GameObject:
   m_ObjectHideFlags: 0

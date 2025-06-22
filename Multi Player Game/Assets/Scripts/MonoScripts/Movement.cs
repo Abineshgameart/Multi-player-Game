@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     // public PlayerInput playerInput;
     public InputActionReference move;
     public CharacterController characterController;
+    public DragController dragController;
     public float walkSpeed = 2f;
     public float turnSmoothTime = 0.1f;
 
@@ -39,9 +40,12 @@ public class Movement : MonoBehaviour
 
         if (direction.magnitude >= 0.1f) 
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (!dragController.isDragging)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
 
             characterController.Move(direction * walkSpeed * Time.deltaTime);
         }

@@ -30,6 +30,7 @@ public class Shooter : MonoBehaviour
     }
 
 
+
     //private void OnEnable()
     //{
     //    fire.action.started += Fire;
@@ -48,8 +49,6 @@ public class Shooter : MonoBehaviour
 
         spawned.Init(_ballSpawn.forward * force, false);
 
-        
     }
 
-    
 }
