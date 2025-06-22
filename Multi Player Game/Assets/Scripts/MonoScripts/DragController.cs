@@ -44,14 +44,19 @@ public class DragController : MonoBehaviour
         {
             Drag();
         }
-        else if (_direction.magnitude < 0.1f)
+        if (_direction.magnitude < 0.1f)
         {
             DragEnd(_direction);
         }
 
         if (isDragging)
         {
+            _projection.SimulateTrajectory(_ballPrefab, _ballSpawn.position, _ballSpawn.forward * forceToAdd);
             Dragging(_direction);
+        }
+        else
+        {
+            _projection.HideTrajectory();
         }
     }
 
@@ -66,7 +71,6 @@ public class DragController : MonoBehaviour
         Vector3 currentPos = l_direction;
         Vector3 distance = currentPos - startPos;
 
-        _projection.SimulateTrajectory(_ballPrefab, _ballSpawn.position, _ballSpawn.forward * forceToAdd);
 
         float targetAngle = Mathf.Atan2(l_direction.x, l_direction.z) * Mathf.Rad2Deg;
         // Add 180 to face opposite direction
