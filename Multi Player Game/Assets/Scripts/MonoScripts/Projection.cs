@@ -55,4 +55,10 @@ public class Projection : MonoBehaviour
 
         Destroy(ghostObj.gameObject);
     }
+
+    public void HideTrajectory()
+    {
+        // Example: If using LineRenderer
+        _line.positionCount = 0;
+    }
 }

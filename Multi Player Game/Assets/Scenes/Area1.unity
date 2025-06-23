@@ -827,12 +827,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 387062032}
-  - component: {fileID: 387062033}
   - component: {fileID: 387062036}
   - component: {fileID: 387062037}
   - component: {fileID: 387062034}
   - component: {fileID: 387062038}
   - component: {fileID: 387062040}
+  - component: {fileID: 387062041}
   - component: {fileID: 387062039}
   m_Layer: 0
   m_Name: Player
@@ -858,36 +858,6 @@ Transform:
   - {fileID: 1383103523}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &387062033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387062031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &387062034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,8 +870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1f8a2a07c3b2447bb5ee1ee04a7ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  move: {fileID: 5543220671168514411, guid: 97ec6ae07fba6fe438e1bc251daec40d, type: 3}
   characterController: {fileID: 387062037}
+  dragController: {fileID: 387062040}
   walkSpeed: 5
   turnSmoothTime: 0.15
 --- !u!136 &387062036
@@ -1081,10 +1052,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 387062031}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885c887b9e52e4c48852424ca9de6b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  look: {fileID: -21686738033474150, guid: 97ec6ae07fba6fe438e1bc251daec40d, type: 3}
+  rightStick: {fileID: 240992952}
+  isDragging: 0
+  forceToAdd: 20
+  turnSmoothTime: 0.1
+  shooterScript: {fileID: 387062041}
+  dragPower: 0
+  dragPowerLimit: 50
+  dragPowerChargeRate: 0.25
+  _projection: {fileID: 387062038}
+  _ballPrefab: {fileID: 89762729440903058, guid: dd7eb847e6b7f2d49b33f543c8971776, type: 3}
+  _ballSpawn: {fileID: 1383103523}
+--- !u!114 &387062041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387062031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f345a26595ceeb4190ca437dac1fca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireBtn: {fileID: 1303308451}
   _projection: {fileID: 387062038}
   _ballPrefab: {fileID: 89762729440903058, guid: dd7eb847e6b7f2d49b33f543c8971776, type: 3}
   _ballSpawn: {fileID: 1383103523}

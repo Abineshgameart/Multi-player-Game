@@ -7,7 +7,7 @@ public class Shooter : MonoBehaviour
 {
     // Public
     // public InputActionReference fire;
-    public Button fireBtn;
+    // public Button fireBtn;
 
     // Private
     [SerializeField] private Projection _projection;
@@ -19,15 +19,16 @@ public class Shooter : MonoBehaviour
     void Start()
     {
         
-        fireBtn.onClick.AddListener(Fire);
+        //fireBtn.onClick.AddListener(Fire);
     }
 
     // Update is called once per frame
     void Update()
     {
-        _projection.SimulateTrajectory(_ballPrefab, _ballSpawn.position, _ballSpawn.forward * force);
+        // _projection.SimulateTrajectory(_ballPrefab, _ballSpawn.position, _ballSpawn.forward * force);
 
     }
+
 
 
     //private void OnEnable()
@@ -48,8 +49,6 @@ public class Shooter : MonoBehaviour
 
         spawned.Init(_ballSpawn.forward * force, false);
 
-        
     }
 
-    
 }
