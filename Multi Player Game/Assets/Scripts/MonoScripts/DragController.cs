@@ -42,15 +42,18 @@ public class DragController : MonoBehaviour
 
         if (_direction.magnitude >= 0.1f)
         {
+            Debug.Log("Drag");
             Drag();
         }
         if (_direction.magnitude < 0.1f)
         {
+            Debug.Log("DragEnd");
             DragEnd(_direction);
         }
 
         if (isDragging)
         {
+            Debug.Log("Draggging");
             _projection.SimulateTrajectory(_ballPrefab, _ballSpawn.position, _ballSpawn.forward * forceToAdd);
             Dragging(_direction);
         }
@@ -58,6 +61,16 @@ public class DragController : MonoBehaviour
         {
             _projection.HideTrajectory();
         }
+    }
+
+    void OnEnable()
+    {
+        look.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        look.action.Disable();
     }
 
     void Drag()
@@ -93,9 +106,9 @@ public class DragController : MonoBehaviour
 
     public void Fire(Vector3 force)
     {
-        var spawned = Instantiate(_ballPrefab, _ballSpawn.position, _ballSpawn.rotation);
+        // var spawned = Instantiate(_ballPrefab, _ballSpawn.position, _ballSpawn.rotation);
 
-        spawned.Init(force, false);
+        // spawned.Init(force, false);
     }
 
 }

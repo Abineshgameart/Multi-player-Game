@@ -40,15 +40,27 @@ public class Movement : MonoBehaviour
 
         if (direction.magnitude >= 0.1f) 
         {
-            
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (!dragController.isDragging)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
 
             characterController.Move(direction * walkSpeed * Time.deltaTime);
         }
 
         // rb.linearVelocity = new Vector3(moveDirection.x * walkSpeed * 100 * Time.deltaTime, rb.linearVelocity.y, moveDirection.y * walkSpeed * 100 * Time.deltaTime);
         // rb.AddForce(new Vector3(moveDirection.x * walkSpeed * Time.deltaTime, 0, moveDirection.y * walkSpeed * Time.deltaTime), ForceMode.VelocityChange);
+    }
+
+    void OnEnable()
+    {
+        move.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        move.action.Disable();
     }
 }
