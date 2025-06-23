@@ -832,6 +832,7 @@ GameObject:
   - component: {fileID: 387062034}
   - component: {fileID: 387062038}
   - component: {fileID: 387062040}
+  - component: {fileID: 387062041}
   - component: {fileID: 387062039}
   m_Layer: 0
   m_Name: Player
@@ -1057,11 +1058,31 @@ MonoBehaviour:
   look: {fileID: -21686738033474150, guid: 97ec6ae07fba6fe438e1bc251daec40d, type: 3}
   rightStick: {fileID: 240992952}
   isDragging: 0
-  forceToAdd: 10
+  forceToAdd: 20
   turnSmoothTime: 0.1
+  shooterScript: {fileID: 387062041}
+  dragPower: 0
+  dragPowerLimit: 50
+  dragPowerChargeRate: 0.25
   _projection: {fileID: 387062038}
   _ballPrefab: {fileID: 89762729440903058, guid: dd7eb847e6b7f2d49b33f543c8971776, type: 3}
   _ballSpawn: {fileID: 1383103523}
+--- !u!114 &387062041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387062031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f345a26595ceeb4190ca437dac1fca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projection: {fileID: 387062038}
+  _ballPrefab: {fileID: 89762729440903058, guid: dd7eb847e6b7f2d49b33f543c8971776, type: 3}
+  _ballSpawn: {fileID: 1383103523}
+  force: 20
 --- !u!1 &390608427
 GameObject:
   m_ObjectHideFlags: 0

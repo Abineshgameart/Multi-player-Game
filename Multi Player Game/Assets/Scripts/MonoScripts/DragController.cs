@@ -13,7 +13,11 @@ public class DragController : MonoBehaviour
     public float forceToAdd = 10f;
     public float turnSmoothTime = 0.1f;
 
+    public Shooter shooterScript;
 
+    public float dragPower = 0f;
+    public float dragPowerLimit = 10f;
+    public float dragPowerChargeRate = 5f; // How fast the power charges per second
 
     // Private
     private Vector2 lookDirection;
@@ -21,6 +25,7 @@ public class DragController : MonoBehaviour
     [SerializeField] private Projection _projection;
     [SerializeField] private Ball _ballPrefab;
     [SerializeField] private Transform _ballSpawn;
+    private bool wasDraggingPreviously = false;
 
 
 
@@ -47,8 +52,12 @@ public class DragController : MonoBehaviour
         }
         if (_direction.magnitude < 0.1f)
         {
-            Debug.Log("DragEnd");
-            DragEnd(_direction);
+
+            if (wasDraggingPreviously)
+            {
+                Debug.Log("Stick Released - Fire Triggered");
+                DragEnd(_direction);
+            }
         }
 
         if (isDragging)
@@ -61,6 +70,9 @@ public class DragController : MonoBehaviour
         {
             _projection.HideTrajectory();
         }
+
+        // Update Dragging State
+        wasDraggingPreviously = (_direction.magnitude >= 0.1f);
     }
 
     void OnEnable()
@@ -80,9 +92,17 @@ public class DragController : MonoBehaviour
 
     void Dragging(Vector3 l_direction)
     {
-        Vector3 startPos = rightStick.position;
-        Vector3 currentPos = l_direction;
-        Vector3 distance = currentPos - startPos;
+        // Just use stick distance from center.
+        float distanceMagnitude = l_direction.magnitude; // 0 to 1 range
+
+        // Add distance-based power
+        float distancePower = distanceMagnitude * dragPowerChargeRate;
+
+        // Add time-based charging (optional: can be removed if you want pure distance)
+        dragPower += (dragPowerChargeRate * Time.fixedDeltaTime) + distancePower;
+
+        // Clamp drag power to limit
+        dragPower = Mathf.Min(dragPower, dragPowerLimit);
 
 
         float targetAngle = Mathf.Atan2(l_direction.x, l_direction.z) * Mathf.Rad2Deg;
@@ -96,19 +116,20 @@ public class DragController : MonoBehaviour
     {
         isDragging = false;
 
-        Vector3 startPos = rightStick.position;
-        Vector3 currentPos = l_direction;
-        Vector3 distance = currentPos - startPos;
-        Vector3 finalForce = distance * forceToAdd;
+        // Calculate force based on stick displacement
+        float forceAmount = l_direction.magnitude * forceToAdd;
 
-        Fire(finalForce);
+        Fire(dragPower);
+        // shooterScript.Fire();
+
+        dragPower = 0f;
     }
 
-    public void Fire(Vector3 force)
+    public void Fire(float force)
     {
-        // var spawned = Instantiate(_ballPrefab, _ballSpawn.position, _ballSpawn.rotation);
+        var spawned = Instantiate(_ballPrefab, _ballSpawn.position, _ballSpawn.rotation);
 
-        // spawned.Init(force, false);
+        spawned.Init(_ballSpawn.forward * force, false);
     }
 
 }
