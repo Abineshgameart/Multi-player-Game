@@ -47,7 +47,7 @@ public class DragController : MonoBehaviour
 
         if (_direction.magnitude >= 0.1f)
         {
-            Debug.Log("Drag");
+            // Debug.Log("Drag");
             Drag();
         }
         if (_direction.magnitude < 0.1f)
@@ -55,14 +55,14 @@ public class DragController : MonoBehaviour
 
             if (wasDraggingPreviously)
             {
-                Debug.Log("Stick Released - Fire Triggered");
+                // Debug.Log("Stick Released - Fire Triggered");
                 DragEnd(_direction);
             }
         }
 
         if (isDragging)
         {
-            Debug.Log("Draggging");
+            // Debug.Log("Draggging");
             _projection.SimulateTrajectory(_ballPrefab, _ballSpawn.position, _ballSpawn.forward * forceToAdd);
             Dragging(_direction);
         }
