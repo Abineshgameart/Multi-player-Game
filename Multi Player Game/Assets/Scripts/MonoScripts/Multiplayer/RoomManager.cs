@@ -1,4 +1,4 @@
-using Photon.Pun;
+﻿using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,7 +33,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         Debug.Log("Connected to Server.");
 
-        PhotonNetwork.JoinLobby();
+        if (!PhotonNetwork.InLobby)   // ✅ Prevent duplicate join calls
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
 
 
@@ -85,6 +88,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
             Debug.Log("Connecting...");
 
             PhotonNetwork.ConnectUsingSettings();
+
+            lobbyBtn.SetActive(false);
         }
     }
     
